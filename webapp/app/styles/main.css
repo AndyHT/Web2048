@@ -129,8 +129,8 @@ header p{
 }
 
 #grid-container{
-  width: 460px;
-  height: 460px;
+  width: 500px;
+  height: 500px;
   padding: 20px;
 
   margin: 30px auto;
@@ -158,10 +158,3 @@ header p{
 
   position: absolute;
 }
-
-
-
-
-
-
-
