@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 function prepareForMobile() {
 	if (documentWidth > 500 ) {
-		gridContainerWidth = 500;
+		gridContainerWidth = 540;
 		cellSpace = 20;
 		cellSideLength = 100;
 	}
