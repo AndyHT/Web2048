@@ -32,8 +32,9 @@
 
       <header>
 				<h1>2048</h1>
-				<a href="javascript:newgame();" id="newgame_btn">New Game</a>
-				<p>score :<span id="score">0</span></p>
+        <button class="btn btn-primary btn-lg" onclick="newgame()">New Game</button>
+        <button class="btn btn-default btn-lg" onclick="getAllRecords()">游戏记录</button>
+        <p>score :<span id="score">0</span></p>
 			</header>
 
 			<div id="grid-container">

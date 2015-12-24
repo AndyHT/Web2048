@@ -1,7 +1,29 @@
 var querystring = require("querystring"),
   fs = require("fs"),
+  // url = require("url"),
   mongoose = require("mongoose"),
   query = require("querystring");    //解析POST请求
+
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+
+db.on('error', function callback () {
+  console.log("Connection error");
+});
+
+db.once('open', function callback () {
+  console.log("Mongo working!");
+});
+
+var Schema = mongoose.Schema;
+var recordSchema = new Schema({
+  name : String,
+  score : Number
+});
+
+var Record = mongoose.model('Record', recordSchema);
+
+
 
 function startGame(request, response) {
   //读index.html后返回给前端
@@ -28,29 +50,28 @@ function addNewRecord(request, response) {
     //POST结束输出结果
     request.addListener("end",function(){
       var params = query.parse(postdata);
-      console.log("Data_name:" + params['name']);
-      console.log("Data_score:" + params['score']);
-
-      mongoose.connect('mongodb://localhost/test');
-      var Record = mongoose.model('Record', {
-        name: String,
-        score: Number,
-      });
+      // console.log("Data_name:" + params['name']);
+      // console.log("Data_score:" + params['score']);
 
       var newRecord = new Record({name: params['name'], score: params['score']});
-      newRecord.save(function(err) {
-        if(err) return console.log(err);//不知道为什么这里不能处理error
-        // response.writeHead(500, {"Content-Type": "text/plain"});
-        // response.write("数据保存到mongodb时出错");
+
+      newRecord.save(function(err, data) {
+        if (err) {
+          response.writeHead(500, {"Content-Type": "text/plain"});
+          response.write("数据保存到mongodb时出错");
+          response.end();
+        } else {
+          response.writeHead(200, {"Content-Type": "text/text"});
+          response.write("新纪录添加成功");
+          response.end();
+        }
       });
     });
   } else {
     console.log("接收到GET请求");
     response.writeHead(403);
+    response.end();
   }
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("新纪录添加成功");
-  response.end();
 }
 
 function returnFiles(request, response, pathname) {
@@ -78,6 +99,19 @@ function returnFiles(request, response, pathname) {
   response.end();
 }
 
+//获得所有记录
+function getAllRecords(request, response) {
+  Record.find(function(err, records) {//这段代码有毒
+    if(err) return console.err(err);
+    // console.dir(records);
+    response.writeHead(200, {"Content-Type": "application/json"});
+    //将数据转为json格式
+
+    response.end(JSON.stringify(records));
+  });
+}
+
 exports.start = startGame;
 exports.addNewRecord = addNewRecord;
 exports.returnFiles = returnFiles;
+exports.getAllRecords = getAllRecords;
