@@ -319,6 +319,13 @@ function moveDown(){
 
 function isgameover(){
 	if (gameover()) {
-		alert("Game Over");
+		alert("Game Over");//弹出提示框登记name
+
+		// $('#newgame_btn').click(function() {//发送post请求到后台
+		//   $.post("addNewRecord/", { name: "John", score: 10},
+		//   function(data){
+		//      console.log("Data Loaded: " + data);
+		//    });
+		// });
 	};
 }

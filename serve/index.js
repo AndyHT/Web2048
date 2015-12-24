@@ -4,7 +4,7 @@ var requestHandlers = require("./requestHandlers");
 
 var handle = {}
 handle["/"] = requestHandlers.start;
-handle["/addNewRecord"] = requestHandlers.addNewRecord;
+handle["/addNewRecord/"] = requestHandlers.addNewRecord;
 handle["others"] = requestHandlers.returnFiles;
 
 server.start(router.route, handle);
