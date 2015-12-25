@@ -101,13 +101,13 @@ function returnFiles(request, response, pathname) {
 
 //获得所有记录
 function getAllRecords(request, response) {
-  Record.find(function(err, records) {//这段代码有毒
+  Record.find(function(err, records) {
     if(err) return console.err(err);
     // console.dir(records);
     response.writeHead(200, {"Content-Type": "application/json"});
     //将数据转为json格式
-
-    response.end(JSON.stringify(records));
+    var data = {"records": records};
+    response.end(JSON.stringify(data));
   });
 }
 
