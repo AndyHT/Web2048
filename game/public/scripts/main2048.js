@@ -88,7 +88,7 @@ function updateBoardView(){
 
 //get a random number in board
 function generateOneNumber(){
-	if (nospace( board )) {
+	if (nospace( board)) {
 		return false;
 	};
 
@@ -115,6 +115,7 @@ function generateOneNumber(){
 				if (board[i][j] === 0) {
 					randx = i;
 					randy = j;
+					break;
 				}
 			}
 		}
@@ -180,14 +181,14 @@ function moveLeft(){
 		for (var j = 1; j < 4; j++) {
 			if (board[i][j] != 0) {
 				for (var k = 0; k < j; k++) {
-					if (board[i][k] == 0 && noBlockHorizontal(i, k, j, board)) {
-						//move
+					if (board[i][k] === 0 && noBlockHorizontal(i, k, j, board)) {
+						//move left
 						showMoveAnimation(i, j, i, k);
 						board[i][k] = board[i][j];
 						board[i][j] = 0;
 						continue;
-					}else if (board[i][k] == board[i][j] && noBlockHorizontal(i, k, j, board) && !hasConflicted[i][k]) {
-						//move
+					}else if (board[i][k] === board[i][j] && noBlockHorizontal(i, k, j, board) && !hasConflicted[i][k]) {
+						//merge cube
 						showMoveAnimation(i, j, i, k);
 						//add
 						board[i][k] += board[i][j];
@@ -217,13 +218,13 @@ function moveRight(){
 		for (var j = 2; j >= 0; j--) {
 			if (board[i][j] != 0) {
 				for (var k = 3; k > j; k--) {
-					if (board[i][k] == 0 && noBlockHorizontal(i, j, k, board)) {
+					if (board[i][k] === 0 && noBlockHorizontal(i, j, k, board)) {
 						//move
 						showMoveAnimation(i, j, i, k);
 						board[i][k] = board[i][j];
 						board[i][j] = 0;
 						continue;
-					}else if (board[i][k] == board[i][j] && noBlockHorizontal(i, j, k, board) && !hasConflicted[i][k]) {
+					}else if (board[i][k] === board[i][j] && noBlockHorizontal(i, j, k, board) && !hasConflicted[i][k]) {
 						//move
 						showMoveAnimation(i, j, i, k);
 						//add
@@ -253,14 +254,14 @@ function moveUp(){
 		for (var j = 0; j < 4; j++) {
 			if (board[i][j] != 0) {
 				for (var k = 0; k < i; k++) {
-					if (board[k][j] == 0 && noBlockVertical(k, i, j, board)) {
+					if (board[k][j] === 0 && noBlockVertical(k, i, j, board)) {
 						//move
 						showMoveAnimation(i, j, k, j);
 						board[k][j] = board[i][j];
 						board[i][j] = 0;
 						continue;
-					}else if (board[k][j] == board[i][j] && noBlockVertical(k, i, j, board) && !hasConflicted[i][k]) {
-						//move
+					}else if (board[k][j] === board[i][j] && noBlockVertical(k, i, j, board) && !hasConflicted[k][j]) {
+						//merge cube
 						showMoveAnimation(i, j, k, j);
 						//add
 						board[k][j] += board[i][j];
@@ -268,7 +269,7 @@ function moveUp(){
 						score += board[k][j];
 						// console.log("score:",score);
 						document.getElementById("score").innerHTML = score;
-						hasConflicted[i][k] = true;
+						hasConflicted[k][j] = true;
 						continue;
 					}
 				};
@@ -291,13 +292,13 @@ function moveDown(){
 		for (var j = 0; j < 4; j++) {
 			if (board[i][j] != 0) {
 				for (var k = 3; k > i; k--) {
-					if (board[k][j] == 0 && noBlockVertical(i, k, j, board)) {
+					if (board[k][j] === 0 && noBlockVertical(i, k, j, board)) {
 						//move
 						showMoveAnimation(i, j, k, j);
 						board[k][j] = board[i][j];
 						board[i][j] = 0;
 						continue;
-					}else if (board[k][j] == board[i][j] && noBlockVertical(i, k, j, board) && !hasConflicted[i][k]) {
+					}else if (board[k][j] === board[i][j] && noBlockVertical(i, k, j, board) && !hasConflicted[k][j]) {
 						//move
 						showMoveAnimation(i, j, k, j);
 						//add
@@ -306,7 +307,7 @@ function moveDown(){
 						score += board[k][j];
 						// console.log("score:",score);
 						document.getElementById("score").innerHTML = score;
-						hasConflicted[i][k] = true;
+						hasConflicted[k][j] = true;
 						continue;
 					}
 				};

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, hight=device-hight, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -33,7 +33,7 @@
       <header>
 				<h1>2048</h1>
         <button class="btn btn-primary btn-lg" onclick="newgame()">New Game</button>
-        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#recordsModal" onclick="getAllRecords()">游戏记录</button>
+        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#recordsModal">游戏记录</button>
         <p>score :<span id="score">0</span></p>
 			</header>
 
@@ -99,7 +99,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="recipient-name" class="control-label">姓名:</label>
-              <input type="text" class="form-control" id="recipient-name" placeholder="请输入你的姓名">
+              <input type="text" class="form-control" id="playerName" placeholder="请输入你的姓名">
             </div>
           </div>
           <div class="modal-footer">
@@ -109,7 +109,9 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-default" onclick="testModal()">click</button><!-- 测试用 -->
+
+    <!-- 测试用 -->
+    <button class="btn btn-default" onclick="testModal()">click</button>
 
 
     <!-- build:js(.) scripts/vendor.js -->
