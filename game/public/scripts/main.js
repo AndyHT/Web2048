@@ -6,13 +6,13 @@ game2048.controller('getRecordsCtrl', function($scope, $http) {
   //测试用
   // $scope.records = [{'name': 'lala', 'score': 10}, {'name': 'hah', 'score': 10}]
 
-  // $('#recordsModal').on('show.bs.modal', function (e) {
-  //   console.log('请求Records');
-  //   $http.post('http://localhost:8888/getAllRecords/')
-  //   .success(function (response) {
-  //     $scope.records = response.records;
-  //   });
-  // });
+  $scope.getRecords = function() {
+    console.log('请求Records');
+    $http.post('http://localhost:8888/getAllRecords/')
+    .success(function (response) {
+      $scope.records = response.records;
+    });
+  }
 });
 
 
@@ -21,6 +21,11 @@ function saveRecord() {
   console.log('Save the record');
   var playerName = $('#playerName').val();
   $('#playerName').val('');
+
+  if ('' === playerName) {
+    playerName = '未命名';
+  }
+
   $.post('addNewRecord/', { name: playerName, score: score},
   function(data){
      console.log("Data Loaded: " + data);

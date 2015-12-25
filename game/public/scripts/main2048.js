@@ -111,7 +111,7 @@ function generateOneNumber(){
 	}
 	if (times === 50) {
 		for (var i = 0; i < 4; i++) {
-			for (var j = 0; i < 4; j++) {
+			for (var j = 0; j < 4; j++) {
 				if (board[i][j] === 0) {
 					randx = i;
 					randy = j;
