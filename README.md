@@ -1,5 +1,5 @@
 # WebGame:Web技术课程项目
-下载项目后需要使用npm和bower安装项目依赖包，确保你的电脑上已经安装有node和bower；在相应目录下使用以下命令安装node_modules和bower_components
+在Github下载项目后需要使用npm和bower安装项目依赖包，确保你的电脑上已经安装有node和bower；在相应目录下使用以下命令安装node_modules和bower_components
 
 ```bash
 ./game $ npm install
@@ -7,10 +7,12 @@
 ```
 安装完成后使用node运行index.js文件，然后访问[http://localhost:8888](http://localhost:8888)即可开始游戏
 
-没有MongoDB数据库游戏可以正常运行，但是无法在历史记录里看到游戏得分记录以及无法保存游戏记录
+没有MongoDB数据库游戏也可以正常运行，但是无法在历史记录里看到游戏得分记录以及无法保存游戏记录
 
 ##Game部分:
 游戏是经典的2048，基本还原了原本游戏的逻辑和UI，并且实现了记录游戏分数的功能，游戏分数记录存储在MongoDB数据库中
+
+游戏可以使用上下左右方向键来控制方块的移动，也可以使用触摸上下左右的滑动来控制方块的移动，当游戏结束时会弹出提示框提示用户增加记录，点击游戏记录按钮会显示储存在数据库里的游戏历史记录
 
 前端游戏部分的代码位于[./game/public/](./game/public/)中
 
