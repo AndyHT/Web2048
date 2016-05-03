@@ -1,4 +1,4 @@
-# WebGame:Web技术课程项目
+# Web2048
 在Github下载项目后需要使用npm和bower安装项目依赖包，确保你的电脑上已经安装有node和bower；在相应目录下使用以下命令安装node_modules和bower_components
 
 ```bash
@@ -46,4 +46,7 @@
 * 读取静态文件返回给前段
 * 将数据写入数据库
 
+###Issue
+* 将数据库修改为野狗云
+* 网页发布到Github Pages
 
