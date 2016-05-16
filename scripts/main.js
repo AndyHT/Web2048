@@ -1,21 +1,5 @@
 'use strict';
 
-var game2048 = angular.module('game2048', []);
-game2048.controller('getRecordsCtrl', function($scope, $http) {
-
-  //测试用
-  // $scope.records = [{'name': 'lala', 'score': 10}, {'name': 'hah', 'score': 10}]
-
-  $scope.getRecords = function() {
-    console.log('请求Records');
-    $http.post('http://localhost:8888/getAllRecords/')
-    .success(function (response) {
-      $scope.records = response.records;
-    });
-  }
-});
-
-
 //保存记录到数据库
 function saveRecord() {
   console.log('Save the record');
